@@ -13,7 +13,7 @@ Sys.setenv(TZ="Asia/Taipei")
 
 funcMvFiles(fromPath = "~/vtERP/",fileNames = funcConcat("*",pgName,".xls"),filesPath = "ERP_Data/")
 
-checkERPFiles <- system("ls ~/vtERP/ | grep ERP", intern = T)
+checkERPFiles <- system("ls ~/rawData/ERP_Data/ | grep ERP", intern = T)
 
 if (length(checkERPFiles) > 0) {
   smb.log <- data.table( dt = Sys.time(), log = "ERP Data found", data = checkERPFiles)
@@ -32,6 +32,7 @@ if (length(checkERPFiles) > 0) {
         # Read input from excel
         # Assume there is only 1 worksheet
         dt <- data.table(read.xlsx2(f,sheetIndex = 1))
+        # dt <- data.table(read.xlsx2("/home/appSA01/rawData/ERP_Data/20171123_ERP.xls",sheetIndex = 1))
         # Backup code for testing
         # dt <- data.table(read.xlsx2("/home/appSA01/rawData/ERP_Data/20171110_vtERP.xls",sheetIndex = 1))
       
