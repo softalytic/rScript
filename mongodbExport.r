@@ -23,16 +23,16 @@ mongoQuery <- function(conn,objName,queryTs){
 
 # 1. Setup the MongoDB connections
 erp <- mongo(collection="erp",db="test", verbose = T)
-wf1Conn <- mongo(collection="workflow1",db="test", verbose = T)
-wf2Conn <- mongo(collection="workflow2",db="test", verbose = T)
-wf3Conn <- mongo(collection="workflow3",db="test", verbose = T)
+wf1Conn <- mongo(collection="workflows",db="test", verbose = T)
+# wf2Conn <- mongo(collection="workflow2",db="test", verbose = T)
+# wf3Conn <- mongo(collection="workflow3",db="test", verbose = T)
 
 # 2. Set a seed point for the record retrieval
 # 1 min before the process
 queryTs <- strftime(as.POSIXlt(Sys.time()-60, "UTC", "%Y-%m-%dT%H:%M:%S"), "%Y-%m-%dT%H:%M:%S%z")
 
 # 3. Loop through the operations on wf1, wf2, wf3
-lapply(c("wf1","wf2","wf3"),function(name){
+lapply(c("wf1"),function(name){
   eval(parse(text = funcConcat("mongoQuery(",name,"Conn,\"",name,"\",queryTs)")))
   # Assume data.table has been converted when query from mongodb
   dt.data <- get(funcConcat(name,"Data"))
