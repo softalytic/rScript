@@ -1,5 +1,5 @@
-setwd("~/rawData/")
-source("~/rScript/coreFunc.r")
+setwd("/home/appSA01/rawData/")
+source("/home/appSA01/rScript/coreFunc.r")
 pgName <- "vtAppServer"
 funcArgs() # Load any args
 
@@ -36,9 +36,10 @@ if(log.tmp$dt == format(Sys.time(),"%Y%m%d")){
   log.tmp$log <- (log.tmp$log + 1)
 } else {
   log.tmp$log <- 1
+  log.tmp$dt <- format(Sys.time(),"%Y%m%d")
 }
 
-smb.log <- data.table( dt = format(Sys.time(),"%Y%m%d"), log = log.tmp$log)
+smb.log <- data.table( dt = format(Sys.time(),"%Y%m%d"), log = log.tmp$log, time = Sys.time())
 
 # 3. Loop through the operations on wf1, wf2, wf3
 lapply(c("wf"),function(name){
