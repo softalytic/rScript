@@ -68,6 +68,5 @@ if (length(checkERPFiles) > 0) {
   smb.log <- data.table( dt = Sys.time(), log = "No ERP data for input")
   conn <- mongo(collection="test",db="smbLog", verbose = T)
   conn$insert(smb.log)
-  
 }
 
