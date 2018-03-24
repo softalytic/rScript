@@ -1,6 +1,6 @@
 setwd("~/rawData/")
 source("~/rScript/coreFunc.r")
-pgName <- "ERPAbnormal"
+pgName <- "ERPYC"
 funcArgs() # Load any args
 library(xlsx)
 
