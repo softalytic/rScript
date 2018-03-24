@@ -1,5 +1,5 @@
-setwd("/home/appSA01/rawData/")
-source("/home/appSA01/rScript/coreFunc.r")
+setwd("~/rawData/")
+source("~/rScript/coreFunc.r")
 pgName <- "vtAppServer"
 funcArgs() # Load any args
 
@@ -58,7 +58,7 @@ lapply(c("wf"),function(name){
       funcPrint("This process ",name," is valided!")
       # Export the files
       # funcDtOutputFiles(pattern = funcConcat(name,"Data$"), oPath = "~/vtERP/",gsUpload = F)
-      write.xlsx2(x = get(funcConcat(name,"Data")),file = funcConcat("/home/appSA01/vtERP/",log.tmp$dt,"_",formatC(log.tmp$log, width = 3,flag = "0"),"_vtApp.xlsx"), row.names = F)
+      write.xlsx2(x = get(funcConcat(name,"Data")),file = funcConcat("~/vtERP/",log.tmp$dt,"_",formatC(log.tmp$log, width = 3,flag = "0"),"_vtApp.xlsx"), row.names = F)
       # Should load the exported id into the mongoDB for record keep
       
       # For each unique data id, mark exported

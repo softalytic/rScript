@@ -32,9 +32,9 @@ if (length(checkERPFiles) > 0) {
         # Read input from excel
         # Assume there is only 1 worksheet
         dt <- data.table(read.xlsx2(f,sheetIndex = 1))
-        # dt <- data.table(read.xlsx2("/home/appSA01/rawData/ERP_Data/20171123_ERP.xls",sheetIndex = 1))
+        # dt <- data.table(read.xlsx2("~/rawData/ERP_Data/20171123_ERP.xls",sheetIndex = 1))
         # Backup code for testing
-        # dt <- data.table(read.xlsx2("/home/appSA01/rawData/ERP_Data/20171110_vtERP.xls",sheetIndex = 1))
+        # dt <- data.table(read.xlsx2("~/rawData/ERP_Data/20171110_vtERP.xls",sheetIndex = 1))
       
         funcPrint("loading the data to db")
         
