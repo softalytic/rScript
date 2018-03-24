@@ -13,7 +13,7 @@ Sys.setenv(TZ="Asia/Taipei")
 
 funcMvFiles(fromPath = "~/vtERP/",fileNames = funcConcat("*",pgName,".xls"),filesPath = "ERP_Data/")
 
-checkERPFiles <- system("ls ~/rawData/ERP_Data/ | grep ERPAbnormal", intern = T)
+checkERPFiles <- system("ls ~/rawData/ERP_Data/ | grep ERPYC", intern = T)
 
 if (length(checkERPFiles) > 0) {
   smb.log <- data.table( dt = Sys.time(), log = "ERP Abnormal Data found", data = checkERPFiles)
