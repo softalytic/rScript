@@ -33,9 +33,9 @@ if (length(checkERPFiles) > 0) {
         # Assume there is only 1 worksheet
         # dt <- data.table(read.xlsx2(f,sheetIndex = 1))
         # Backup code for testing
-        staff <- data.table(read.xlsx2(f,sheetIndex = 1,startRow = 2))
-        # staff <- data.table(read.xlsx2("/Users/thomasq/Desktop/20171207_vtStaff.xlsx",sheetIndex = 1,startRow = 2))
-        staff <- subset(staff,select = c(1:14))
+        staff <<- data.table(read.xlsx2(f,sheetName = "Staff",startRow = 2))
+        print(names(staff))
+        staff <<- subset(staff,select = c(1:14))
         names(staff) <- c("wfProcessName",
                           "wfRow",
                           "wfStaffOptName",
@@ -51,8 +51,10 @@ if (length(checkERPFiles) > 0) {
                           "wfStaffQCName",
                           "wfStaffQCId")
         staff <- staff[wfStaffOptId != ""]
+        funcPrint("staff table has been finished")
         
-        machine <- data.table(read.xlsx2(f,sheetIndex = 2,startRow = 2))
+        machine <<- data.table(read.xlsx2(f,sheetName = "Machine",startRow = 2))
+        print(names(machine))
         names(machine) <- c("wfOptMachineId",
                             "wfStaffTechName",
                             "wfStaffTechId",
