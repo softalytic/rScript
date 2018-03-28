@@ -23,7 +23,7 @@ if (length(checkERPFiles) > 0) {
   # Main operation here
   try(
     lapply(
-      funcFileList(dtFolder = dtFolder,pgName = "ERP_Data", pattern = funcConcat("*",pgName,".xls")),function(f){
+      funcFileList(dtFolder = dtFolder,pgName = "ERP_Data", pattern = funcConcat("*",pgName,".xls*")),function(f){
         funcDtTimer(T)
         funcPrint("Uploading file: ",f)
         
