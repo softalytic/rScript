@@ -32,11 +32,15 @@ queryTs <- strftime(as.POSIXlt(Sys.time()-60, "UTC", "%Y-%m-%dT%H:%M:%S"), "%Y-%
 
 # Check latest record
 log.tmp <- logConn$find(sort = '{"_id":-1}',limit = 1)
-if(log.tmp$dt == format(Sys.time(),"%Y%m%d")){
-  log.tmp$log <- (log.tmp$log + 1)
+if(length(log.tmp) != 0){
+  if(log.tmp$dt == format(Sys.time(),"%Y%m%d") ){
+    log.tmp$log <- (log.tmp$log + 1)
+  } else {
+    log.tmp$log <- 1
+    log.tmp$dt <- format(Sys.time(),"%Y%m%d")
+  }
 } else {
-  log.tmp$log <- 1
-  log.tmp$dt <- format(Sys.time(),"%Y%m%d")
+  log.tmp <- data.table(log=1,dt=format(Sys.time(),"%Y%m%d"))
 }
 
 smb.log <- data.table( dt = format(Sys.time(),"%Y%m%d"), log = log.tmp$log, time = Sys.time())
@@ -58,7 +62,7 @@ lapply(c("wf"),function(name){
       funcPrint("This process ",name," is valided!")
       # Export the files
       # funcDtOutputFiles(pattern = funcConcat(name,"Data$"), oPath = "~/vtERP/",gsUpload = F)
-      write.xlsx2(x = get(funcConcat(name,"Data")),file = funcConcat("~/vtERP/",log.tmp$dt,"_",formatC(log.tmp$log, width = 3,flag = "0"),"_vtApp.xlsx"), row.names = F)
+      write.xlsx2(x = get(funcConcat(name,"Data")),file = funcConcat("/home/adminSA01/vtERP/",log.tmp$dt,"_",formatC(log.tmp$log, width = 3,flag = "0"),"_vtApp.xlsx"), row.names = F)
       # Should load the exported id into the mongoDB for record keep
       
       # For each unique data id, mark exported
